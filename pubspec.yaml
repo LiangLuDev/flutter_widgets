@@ -36,6 +36,10 @@ dependencies:
   flutter_widget_from_html: any
   flutter_widget_from_html_core: any
   html: any
+#  markdown_widget: ^1.2.6
+  markdown_widget:
+    git:
+      url: https://github.com/LiangLuDev/markdown_widget.git
   flutter_slidable:
     git:
       url: https://github.com/LiangLuDev/flutter_slidable.git
@@ -56,8 +60,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
