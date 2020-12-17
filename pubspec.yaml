@@ -36,7 +36,9 @@ dependencies:
   flutter_widget_from_html: any
   flutter_widget_from_html_core: any
   html: any
-  flutter_slidable: 0.5.4
+  flutter_slidable:
+    git:
+      url: https://github.com/LiangLuDev/flutter_slidable.git
 
 dev_dependencies:
   flutter_test:

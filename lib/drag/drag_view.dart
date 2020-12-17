@@ -81,22 +81,22 @@ class _GreenShadesState extends State<GreenShades>
                 drag?.cancel();
               }
               //
-              // if (notification is UserScrollNotification &&
-              //     notification.direction == ScrollDirection.forward &&
-              //     !_tabController.indexIsChanging &&
-              //     dragStartDetails != null &&
-              //     _tabController.index == 0) {
-              //   _pageController.position.drag(dragStartDetails, () {});
-              // }
-              //
+              if (notification is UserScrollNotification &&
+                  notification.direction == ScrollDirection.forward &&
+                  !_tabController.indexIsChanging &&
+                  dragStartDetails != null &&
+                  _tabController.index == 0) {
+                _pageController.position.drag(dragStartDetails, () {});
+              }
+
               // // Simialrly Handle the last tab.
-              // if (notification is UserScrollNotification &&
-              //     notification.direction == ScrollDirection.reverse &&
-              //     !_tabController.indexIsChanging &&
-              //     dragStartDetails != null &&
-              //     _tabController.index == _tabController.length - 1) {
-              //   _pageController.position.drag(dragStartDetails, () {});
-              // }
+              if (notification is UserScrollNotification &&
+                  notification.direction == ScrollDirection.reverse &&
+                  !_tabController.indexIsChanging &&
+                  dragStartDetails != null &&
+                  _tabController.index == _tabController.length - 1) {
+                _pageController.position.drag(dragStartDetails, () {});
+              }
               return true;
             },
             child: TabBarView(
