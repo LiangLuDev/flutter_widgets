@@ -14,30 +14,89 @@ class DragWidget extends StatefulWidget {
 class _DragWidgetState extends State<DragWidget> {
   DragStartDetails dragStartDetails;
   Drag drag;
-  PageController _pageController = PageController(viewportFraction: 0.9);
-  SlidableController slidableController;
+  PageController _pageController = PageController(viewportFraction: 0.8);
+  var _currPageValue = 0.0;
+
+  _buildPageItem(int index) {
+    double value;
+    if (_pageController.position.haveDimensions) {
+      value = _pageController.page - index;
+
+    } else {
+      // If haveDimensions is false, use _currentPage to calculate value.
+      value = (_currPageValue - index).toDouble();
+      // print('haveDimensions $value');
+    }
+    // We want the peeking cards to be 160 in height and 0.38 helps
+    // achieve that.
+    value = (1 - (value.abs())).clamp(0, 1).toDouble();
+    print('value $value');
+    return Opacity(
+      opacity: value,
+      child: Slidable.builder(
+        actionExtentRatio: 0.23,
+        actionPane: SlidableDrawerActionPane(),
+        child: Container(
+          margin: EdgeInsets.only(left: 20, right: 20),
+          color: Colors.red,
+          child: ListTile(
+            title: Text('title $index'),
+            subtitle: Text('subtitle $index'),
+          ),
+        ),
+        secondaryActionDelegate: SlideActionBuilderDelegate(
+            builder: (BuildContext context, int index,
+                Animation<double> animation, SlidableRenderingMode step) {
+              return SlideAction(
+                color: Theme.of(context).backgroundColor,
+                closeOnTap: false,
+                child: ClipOval(
+                  child: Container(
+                    height: 48,
+                    width: 48,
+                    padding: EdgeInsets.all(12),
+                    color: Color(0xFFEB5147),
+                    child: Icon(Icons.ac_unit),
+                  ),
+                ),
+              );
+            },
+            actionCount: 1),
+        onDragStart: (DragStartDetails details) {
+          dragStartDetails = details;
+        },
+        onDragUpdate: (details) {
+          if (details.delta.dx > 0) {
+            // allow pageview scroll
+            drag = _pageController.position.drag(dragStartDetails, () {});
+            drag.update(details);
+          } else {
+            drag?.cancel();
+          }
+        },
+        onDragEnd: (details) {
+          drag?.cancel();
+        },
+      ),
+    );
+  }
 
   @override
   void initState() {
     super.initState();
     _pageController.addListener(() {
-      print('_pageController : ${_pageController.position.pixels}');
+      setState(() {
+        _currPageValue = _pageController.page;
+      });
     });
-    slidableController = SlidableController(
-      onSlideAnimationChanged: (Animation<double> slideAnimation) {},
-      onSlideIsOpenChanged: (bool isOpen) {},
-    );
   }
 
-  double _left = 400;
-  double _progress = 100;
-  double _downDx = 0;
-  double _upDx = 0;
-  double _width = 400;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('DragWidget'),),
+      appBar: AppBar(
+        title: Text('DragWidget'),
+      ),
       body: Container(
         height: 100,
         child: PageView.builder(
@@ -45,47 +104,11 @@ class _DragWidgetState extends State<DragWidget> {
             controller: _pageController,
             allowImplicitScrolling: true,
             itemCount: 5,
+            onPageChanged: (page) {
+              print('page : $page');
+            },
             itemBuilder: (BuildContext context, int index) {
-              return Slidable.builder(
-                actionExtentRatio: 0.23,
-                actionPane: SlidableDrawerActionPane(),
-                child: Container(
-                  color: Colors.red,
-                  child: ListTile(
-                    title: Text('title $index'),
-                    subtitle: Text('subtitle $index'),
-                  ),
-                ),
-                secondaryActionDelegate: SlideActionBuilderDelegate(builder: (BuildContext context, int index, Animation<double> animation, SlidableRenderingMode step) {
-                  return SlideAction(
-                    color: Theme.of(context).backgroundColor,
-                    closeOnTap: false,
-                    child: ClipOval(
-                      child: Container(
-                        height: 48,
-                        width: 48,
-                        padding: EdgeInsets.all(12),
-                        color: Color(0xFFEB5147),
-                        child: Icon(Icons.ac_unit),
-                      ),
-                    ),
-                  );
-                }, actionCount: 1),
-                onDragStart: (DragStartDetails details){
-                  dragStartDetails = details;
-                },
-                onDragUpdate: (details){
-                  if(details.delta.dx > 0 ){ // allow pageview scroll
-                    drag = _pageController.position.drag(dragStartDetails, () {});
-                    drag.update(details);
-                  }else{
-                    drag?.cancel();
-                  }
-                },
-                onDragEnd: (details){
-                  drag?.cancel();
-                },
-              );
+              return _buildPageItem(index);
             }),
       ),
     );
