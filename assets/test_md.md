@@ -65,17 +65,43 @@ row 1 col 1 | row 1 col 2
 row 2 col 1 | row 2 col 2
 
 
+<bs-video>
+{
+    "width":"300",
+    "height":"400",
+    "url":"https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4",
+    "title":"abc",
+    "desc":"描述",
+    "publishTime":"发布时间",
+    "createTime":"创建时间",
+    "duration":200
+}
+</bs-video>
 
-Html Image:
+<bs-app>
+{
+    "appName": "def",
+    "desc": "123",
+    "iconUrl": "https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/img19.jpg",
+    "android": {
+        "pkgName": "def",
+        "downloadUrl": "https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4",
+        "deeplinkUrl": "https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4",
+        "h5Url": "https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4",
+        "downloadNum": "2.5亿",
+        "size": 25000,
+        "version": "1.2.2"
+    },
+    "ios": {
+        "pkgName": "def",
+        "deeplinkUrl": "https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4",
+        "h5Url": "https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4",
+        "size": 25000,
+        "version": "1.2.2",
+        "downloadNum": "2.5亿"
+    }
+}
+</bs-app>
 
+<video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
 <img width="250" height="250" src="https://user-images.githubusercontent.com/30992818/65225126-225fed00-daf7-11e9-9eb7-cd21e6b1cc95.png"/>
-
-Video:
-
-<video width="250" height="250" src="https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4">
-
-<side content="250" height="250"/>
-
-<bs-game content="dsjfkjasf">
-{appName":"def","pkgName":"def","desc":"123","iconUrl":"https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/img19.jpg","downloadUrl":"https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4","deeplinkUrl":"https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4","h5Url":"https://office-1256119282.cos.ap-chengdu.myqcloud.com/office-cn/official-m/static/img/skyw/sky.mp4","downloadNum":"2.5亿","pkgSize":25000}
-</bs-game>

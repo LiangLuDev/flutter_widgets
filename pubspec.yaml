@@ -36,8 +36,11 @@ dependencies:
   flutter_widget_from_html: any
   flutter_widget_from_html_core: any
   html: any
+  video_player: ^1.0.1
+  fijkplayer: ^0.8.7
 #  markdown_widget: ^1.2.6
   markdown_widget:
+#    path: ../markdown_widget
     git:
       url: https://github.com/LiangLuDev/markdown_widget.git
   flutter_slidable:
