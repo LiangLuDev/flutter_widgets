@@ -12,10 +12,10 @@ Widget customWidget(m.Element element) {
   Widget widget = Container();
   Map jsonData = json.decode(element.textContent);
   if (jsonData.isEmpty) return widget;
+  print('customWidget : ${element.tag}');
   switch (element.tag) {
     case 'bs-app':
       MarkdownBsappBean bsappBean = MarkdownBsappBean.fromMap(jsonData);
-      print('bsappBean :${bsappBean.appName}');
       widget = Container(
         child: Text(
           bsappBean.appName,

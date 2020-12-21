@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widgets/parse/custom_video_widget.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
+import 'custom_image_widget.dart';
 import 'custom_markdown_widget.dart';
 
 /// Markdown解析，支持自定义标签
@@ -44,6 +45,9 @@ class _MarkdownPageState extends State<MarkdownPage> {
             pConfig: PConfig(
               custom: customWidget,
             ),
+            imgBuilder: (String url,attributes){
+              return CustomImageWidget(url);
+            }
           ),
         ),
       ),

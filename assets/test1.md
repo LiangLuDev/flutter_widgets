@@ -1,7 +1,1 @@
-<bs-video>
-{
-    "width":"300",
-}
-</bs-video>
-
-<video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+我们这些在地球上生活的人类在平时生活中很少会主动思考关于“重力”的事情。

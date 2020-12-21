@@ -65,6 +65,10 @@ row 1 col 1 | row 1 col 2
 row 2 col 1 | row 2 col 2
 
 
+![图片](https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=280591509,585529894&fm=26&gp=0.jpg)
+
+今天天气非常不错，很喜欢
+
 <bs-video>
 {
     "width":"300",
@@ -102,6 +106,3 @@ row 2 col 1 | row 2 col 2
     }
 }
 </bs-app>
-
-<video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
-<img width="250" height="250" src="https://user-images.githubusercontent.com/30992818/65225126-225fed00-daf7-11e9-9eb7-cd21e6b1cc95.png"/>
