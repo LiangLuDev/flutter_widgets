@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_widgets/drag/custom_page_scroll_physics.dart';
 
 /// 左滑响应Slidable左滑删除
 /// 右滑响应PageView滚动
@@ -21,16 +22,12 @@ class _DragWidgetState extends State<DragWidget> {
     double value;
     if (_pageController.position.haveDimensions) {
       value = _pageController.page - index;
-
     } else {
       // If haveDimensions is false, use _currentPage to calculate value.
       value = (_currPageValue - index).toDouble();
       // print('haveDimensions $value');
     }
-    // We want the peeking cards to be 160 in height and 0.38 helps
-    // achieve that.
-    value = (1 - (value.abs())).clamp(0, 1).toDouble();
-    print('value $value');
+    value = _currPageValue < index ? 1 : (1 - (value.abs())).clamp(0, 1).toDouble();
     return Opacity(
       opacity: value,
       child: Slidable.builder(
@@ -63,19 +60,21 @@ class _DragWidgetState extends State<DragWidget> {
             },
             actionCount: 1),
         onDragStart: (DragStartDetails details) {
-          dragStartDetails = details;
+          // dragStartDetails = details;
         },
         onDragUpdate: (details) {
-          if (details.delta.dx > 0) {
-            // allow pageview scroll
-            drag = _pageController.position.drag(dragStartDetails, () {});
-            drag.update(details);
-          } else {
-            drag?.cancel();
-          }
+          // if (details.delta.dx > 0) {
+          //   // allow pageview scroll
+          //   drag = _pageController.position.drag(dragStartDetails, () {});
+          //   drag.update(details);
+          // } else {
+          //   drag?.cancel();
+          // }
         },
         onDragEnd: (details) {
-          drag?.cancel();
+          // print('details ${details.primaryVelocity}');
+          // print('details velocity${details.velocity}');
+          // drag?.cancel();
         },
       ),
     );
@@ -101,13 +100,19 @@ class _DragWidgetState extends State<DragWidget> {
         height: 100,
         child: PageView.builder(
             reverse: true,
+            pageSnapping:false,//必须
             controller: _pageController,
             allowImplicitScrolling: true,
             itemCount: 5,
+            physics: CustomPageScrollPhysics(),
             onPageChanged: (page) {
               print('page : $page');
             },
             itemBuilder: (BuildContext context, int index) {
+              // return ListTile(
+              //   title: Text('title $index'),
+              //   subtitle: Text('subtitle $index'),
+              // );
               return _buildPageItem(index);
             }),
       ),
