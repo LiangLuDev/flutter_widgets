@@ -4,18 +4,6 @@ import 'package:flutter/material.dart';
 
 // 滑动事件示例
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -122,10 +110,10 @@ class DoubleGestureWidget extends StatelessWidget {
     return Scaffold(
         body: RawGestureDetector(
           gestures: {
-            MultipleSlideGestureRecognizer: GestureRecognizerFactoryWithHandlers<
-                MultipleSlideGestureRecognizer>(
-                    () => MultipleSlideGestureRecognizer(),
-                    (MultipleSlideGestureRecognizer instance) {
+            CustomHorizontalDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<
+                CustomHorizontalDragGestureRecognizer>(
+                    () => CustomHorizontalDragGestureRecognizer(),
+                    (CustomHorizontalDragGestureRecognizer instance) {
                   instance.onUpdate = (DragUpdateDetails details) => print(' MultipleSlideGestureRecognizer parent tapped ');
                 }),
             // MultipleTapGestureRecognizer:
@@ -155,6 +143,12 @@ class DoubleGestureWidget extends StatelessWidget {
   }
 }
 
+class CustomHorizontalDragGestureRecognizer extends HorizontalDragGestureRecognizer{
+  @override
+  void rejectGesture(int pointer) {
+    acceptGesture(pointer);
+  }
+}
 class MultipleSlideGestureRecognizer extends PanGestureRecognizer {
   @override
   void rejectGesture(int pointer) {

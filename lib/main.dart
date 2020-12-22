@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/drag/drag_widget.dart';
 
+import 'drag/drag_demo.dart';
 import 'parse/markdown_page.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MarkdownPage(),
+      home: DragWidget(),
     );
   }
 }

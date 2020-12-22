@@ -42,8 +42,6 @@ dependencies:
     git:
       url: https://github.com/LiangLuDev/markdown_widget.git
   flutter_slidable:
-    git:
-      url: https://github.com/LiangLuDev/flutter_slidable.git
 
 dev_dependencies:
   flutter_test:
