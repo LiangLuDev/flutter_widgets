@@ -20,6 +20,8 @@ class _DragWidgetState extends State<DragWidget> {
   Map<Type, GestureRecognizerFactory> _gestureRecognizers;
 
   ScrollPhysics _physics;
+  SlidableController controller;
+  bool _isOpened = false;
 
   initGestureRecognizer() {
     _gestureRecognizers = <Type, GestureRecognizerFactory>{
@@ -47,8 +49,8 @@ class _DragWidgetState extends State<DragWidget> {
   }
 
   _handleDragUpdate(details) {
-    if (details.delta.dx > 0) {
-      _physics = PageScrollPhysics().applyTo(const ClampingScrollPhysics());
+    if (details.delta.dx > 0 && !_isOpened ) {
+      _physics = PageScrollPhysics().applyTo(const BouncingScrollPhysics());
       _drag?.update(details);
     } else {
       _physics =
@@ -62,6 +64,7 @@ class _DragWidgetState extends State<DragWidget> {
   }
 
   void _handleDragCancel() {
+    print('_handleDragCancel');
     assert(_hold == null || _drag == null);
     _hold?.cancel();
     _drag?.cancel();
@@ -89,6 +92,7 @@ class _DragWidgetState extends State<DragWidget> {
     return Opacity(
       opacity: value,
       child: Slidable.builder(
+        controller: controller,
         actionExtentRatio: 0.23,
         actionPane: SlidableDrawerActionPane(),
         child: Container(
@@ -130,6 +134,12 @@ class _DragWidgetState extends State<DragWidget> {
         _currPageValue = _pageController.page;
       });
     });
+
+    controller = SlidableController(
+        onSlideAnimationChanged: (changed) {},
+        onSlideIsOpenChanged: (open) {
+          _isOpened = open;
+        });
   }
 
   @override
