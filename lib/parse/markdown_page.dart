@@ -38,7 +38,8 @@ class _MarkdownPageState extends State<MarkdownPage> {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        color: Colors.white,
+        padding: EdgeInsets.only(left: 30,right: 30),
         child: MarkdownWidget(
           data: data,
           styleConfig: StyleConfig(
