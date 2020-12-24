@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 /// 左滑响应Slidable左滑删除
 /// 右滑响应PageView滚动
 class DragWidget extends StatefulWidget {
@@ -19,7 +18,7 @@ class _DragWidgetState extends State<DragWidget> {
   var _currPageValue = 0.0;
   Map<Type, GestureRecognizerFactory> _gestureRecognizers;
 
-  ScrollPhysics _physics;
+  ScrollPhysics _physics = NeverScrollableScrollPhysics();
   SlidableController controller;
   bool _isOpened = false;
 
@@ -48,14 +47,26 @@ class _DragWidgetState extends State<DragWidget> {
     _hold = _pageController.position.hold(_disposeHold);
   }
 
+
   _handleDragUpdate(details) {
-    if (details.delta.dx > 0 && !_isOpened ) {
-      _physics = PageScrollPhysics().applyTo(const BouncingScrollPhysics());
+    if ((details.delta.dx > 0 || details.delta.dx == 0) && !_isOpened) {
+      refreshPhysics(false);
       _drag?.update(details);
     } else {
-      _physics =
-          PageScrollPhysics().applyTo(const NeverScrollableScrollPhysics());
+      refreshPhysics(true);
       _drag?.cancel();
+    }
+  }
+
+  refreshPhysics(bool isSlideLeft){
+    if(isSlideLeft){
+      if(_physics.parent is BouncingScrollPhysics){
+        _physics.applyTo(NeverScrollableScrollPhysics());
+      }
+    }else{
+      if(_physics.parent is NeverScrollableScrollPhysics){
+        _physics.applyTo(BouncingScrollPhysics());
+      }
     }
   }
 
@@ -64,7 +75,6 @@ class _DragWidgetState extends State<DragWidget> {
   }
 
   void _handleDragCancel() {
-    print('_handleDragCancel');
     assert(_hold == null || _drag == null);
     _hold?.cancel();
     _drag?.cancel();
@@ -157,7 +167,6 @@ class _DragWidgetState extends State<DragWidget> {
               reverse: true,
               //必须
               controller: _pageController,
-              allowImplicitScrolling: true,
               itemCount: 5,
               physics: _physics,
               itemBuilder: (BuildContext context, int index) {
