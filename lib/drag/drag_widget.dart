@@ -14,7 +14,6 @@ class DragWidget extends StatefulWidget {
 class _DragWidgetState extends State<DragWidget> {
   DragStartDetails dragStartDetails;
   Drag _drag;
-  ScrollHoldController _hold;
   PageController _pageController = PageController(viewportFraction: 0.8);
   var _currPageValue = 0.0;
   Map<Type, GestureRecognizerFactory> _gestureRecognizers;
@@ -32,7 +31,6 @@ class _DragWidgetState extends State<DragWidget> {
               (CustomHorizontalDragGestureRecognizer instance) {
         instance
           ..onStart = _handleDragStart
-          ..onDown = _handleDragDown
           ..onUpdate = _handleDragUpdate
           ..onEnd = _handleDragEnd
           ..onCancel = _handleDragCancel;
@@ -44,22 +42,19 @@ class _DragWidgetState extends State<DragWidget> {
     _drag = _pageController.position.drag(details, _disposeDrag);
   }
 
-  _handleDragDown(details) {
-    _hold = _pageController.position.hold(_disposeHold);
-  }
-
   _handleDragUpdate(details) {
-    print('details :${details.delta.dy}');
+    // 右滑pageview获取滑动事件
     if ((details.delta.dx > 0 || details.delta.dx == 0) && !_isOpened) {
-      refreshPhysics(false);
+      _refreshPhysics(false);
       _drag?.update(details);
     } else {
-      refreshPhysics(true);
+      _refreshPhysics(true);
       _drag?.cancel();
     }
   }
 
-  refreshPhysics(bool isSlideLeft) {
+  // 滑动未停止不处理滑动事件
+  _refreshPhysics(bool isSlideLeft) {
     if (isSlideLeft) {
       if (_physics.parent is BouncingScrollPhysics) {
         _physics.applyTo(NeverScrollableScrollPhysics());
@@ -75,16 +70,9 @@ class _DragWidgetState extends State<DragWidget> {
     _drag?.end(details);
   }
 
-  void _handleDragCancel() {
-    assert(_hold == null || _drag == null);
-    _hold?.cancel();
-    _drag?.cancel();
-    assert(_hold == null);
+  _handleDragCancel() {
     assert(_drag == null);
-  }
-
-  void _disposeHold() {
-    _hold = null;
+    _drag?.cancel();
   }
 
   void _disposeDrag() {
@@ -155,6 +143,17 @@ class _DragWidgetState extends State<DragWidget> {
 
   @override
   Widget build(BuildContext context) {
+    RawGestureDetector(
+      gestures: _gestureRecognizers,
+      child: PageView.builder(
+          controller: _pageController,
+          itemCount: 5,
+          physics: _physics,
+          itemBuilder: (BuildContext context, int index) {
+            return _buildPageItem(index);
+          }),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('DragWidget'),
@@ -163,7 +162,6 @@ class _DragWidgetState extends State<DragWidget> {
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return RawGestureDetector(
-              behavior: HitTestBehavior.deferToChild,
               gestures: _gestureRecognizers,
               child: Container(
                 height: 100,
