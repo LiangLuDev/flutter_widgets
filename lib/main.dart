@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/drag/drag_widget.dart';
+import 'package:flutter_widgets/scroll/scroll_bar.dart';
 
 import 'drag/drag_demo.dart';
 import 'parse/markdown_page.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: DragWidget(),
+      home: ScrollBarWidget(),
     );
   }
 }
