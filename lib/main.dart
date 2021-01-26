@@ -3,6 +3,7 @@ import 'package:flutter_widgets/drag/drag_widget.dart';
 import 'package:flutter_widgets/scroll/scroll_bar.dart';
 
 import 'drag/drag_demo.dart';
+import 'panellist/panel_grid_view.dart';
 import 'parse/markdown_page.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: DragWidget(),
+      home: ExpansionPanelPage(),
     );
   }
 }

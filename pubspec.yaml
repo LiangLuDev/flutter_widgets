@@ -43,6 +43,9 @@ dependencies:
     git:
       url: https://github.com/LiangLuDev/markdown_widget.git
   flutter_slidable:
+  expandable: ^4.1.4
+  # 底部滑动弹框
+  sliding_panel: ^1.3.2
 
 dev_dependencies:
   flutter_test:
