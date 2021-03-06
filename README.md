@@ -11,3 +11,4 @@
 - 左滑删除，右滑PageView滚动
 - Markdown解析，支持自定义标签，自定义视频播放器
 - SeekBar 滑动进度条
+- 文字转语音（TTS）

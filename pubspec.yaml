@@ -46,6 +46,7 @@ dependencies:
   expandable: ^4.1.4
   # 底部滑动弹框
   sliding_panel: ^1.3.2
+  flutter_tts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
