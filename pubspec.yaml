@@ -38,15 +38,26 @@ dependencies:
   html: any
   cached_network_image: ^2.0.0
 #  markdown_widget: ^1.2.6
-  markdown_widget:
-#    path: ../markdown_widget
-    git:
-      url: https://github.com/LiangLuDev/markdown_widget.git
+#  markdown_widget:
+##    path: ../markdown_widget
+#    git:
+#      url: https://github.com/LiangLuDev/markdown_widget.git
   flutter_slidable:
   expandable: ^4.1.4
   # 底部滑动弹框
   sliding_panel: ^1.3.2
   flutter_tts: ^2.1.0
+
+  permission_handler: ^3.0.0
+  image_picker: ^0.6.7+22
+#  qr_code_scanner: ^0.3.5
+  flutter_qr_reader: ^1.0.3
+#  ota_update: ^2.4.1
+  update_app: ^0.1.5
+  http: ^0.12.2
+  flutter_share: ^1.0.5
+  path_provider: ^1.6.27
+  receive_sharing_intent: ^1.4.3
 
 dev_dependencies:
   flutter_test:

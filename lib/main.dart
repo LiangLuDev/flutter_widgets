@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/drag/drag_widget.dart';
-import 'package:flutter_widgets/scroll/scroll_bar.dart';
-import 'package:flutter_widgets/seekbar/test_seek_bar.dart';
-import 'package:flutter_widgets/tts/test_tts.dart';
 
-import 'drag/drag_demo.dart';
-import 'expansion_list/custom_expansion_list.dart';
-import 'json/test_json_page.dart';
-import 'panellist/panel_grid_view.dart';
-import 'parse/markdown_page.dart';
+import 'route/anim_route_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TestJsonPage(),
+      home: AnimRoutePage(),
     );
   }
 }

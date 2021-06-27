@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widgets/parse/custom_video_widget.dart';
-import 'package:markdown_widget/markdown_widget.dart';
+// import 'package:markdown_widget/markdown_widget.dart';
 
 import 'custom_image_widget.dart';
 import 'custom_markdown_widget.dart';
@@ -37,21 +37,21 @@ class _MarkdownPageState extends State<MarkdownPage> {
         ),
         backgroundColor: Colors.black,
       ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.only(left: 30,right: 30),
-        child: MarkdownWidget(
-          data: data,
-          styleConfig: StyleConfig(
-            pConfig: PConfig(
-              custom: customWidget,
-            ),
-            imgBuilder: (String url,attributes){
-              return CustomImageWidget(url);
-            }
-          ),
-        ),
-      ),
+      // body: Container(
+      //   color: Colors.white,
+      //   padding: EdgeInsets.only(left: 30,right: 30),
+      //   child: MarkdownWidget(
+      //     data: data,
+      //     styleConfig: StyleConfig(
+      //       pConfig: PConfig(
+      //         custom: customWidget,
+      //       ),
+      //       imgBuilder: (String url,attributes){
+      //         return CustomImageWidget(url);
+      //       }
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
