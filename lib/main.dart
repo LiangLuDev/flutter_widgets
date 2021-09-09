@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/web/webview_page.dart';
+import 'package:flutter_widgets/webdav/webdav_page.dart';
 
+import 'anim/shake_anim_page.dart';
 import 'route/anim_route_page.dart';
 
 void main() {
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AnimRoutePage(),
+      home: ShakeAnimPage(),
     );
   }
 }

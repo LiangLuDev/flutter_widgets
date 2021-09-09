@@ -58,6 +58,9 @@ dependencies:
   flutter_share: ^1.0.5
   path_provider: ^1.6.27
   receive_sharing_intent: ^1.4.3
+  webdav_client: ^0.0.2
+  webview_flutter: ^1.0.7
+  flutter_animator: ^2.1.0
 
 dev_dependencies:
   flutter_test:
