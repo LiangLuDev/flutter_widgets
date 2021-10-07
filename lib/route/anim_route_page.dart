@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/route/anim_page_route.dart';
+import 'package:flutter_widgets/route/bt_anim_page_route.dart';
 
 import 'anim_route_test_page.dart';
 
@@ -15,7 +16,7 @@ class _AnimRoutePageState extends State<AnimRoutePage> {
       body: Center(
         child: FlatButton(
           child: Text('打开新页面'),
-          onPressed: () => Navigator.of(context).push(AnimPageRoute(AnimRouteTestPage())),
+          onPressed: () => Navigator.of(context).push(BtAnimPageRoute(AnimRouteTestPage())),
         ),
       ),
     );
